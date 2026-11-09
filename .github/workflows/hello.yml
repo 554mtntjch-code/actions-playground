@@ -1,0 +1,14 @@
+name: hello-runner
+on:
+  workflow_dispatch:
+jobs:
+  hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Show runner specs
+        run: |
+          echo "== OS =="; cat /etc/os-release | head -2
+          echo "== CPU =="; nproc; grep -m1 "model name" /proc/cpuinfo
+          echo "== MEM =="; free -h | head -2
+          echo "== DISK =="; df -h / | tail -1
+          echo "HELLO-ACTIONS-OK"
